@@ -1,0 +1,88 @@
+extends layout
+
+block layout-content
+  .container.py-5
+    .row.align-items-stretch
+      if type === "movie"
+        .col-md-4.d-flex.background
+          .card.shadow-lg.border-0.w-100
+            if movie.poster_path
+              img.card-img-top.rounded.borders(src=`https://image.tmdb.org/t/p/w500${movie.poster_path}`, alt=`This is an image of the movie ${movie.original_title}`)
+            .card-body.text-center.bg-black.text-light
+              h3.card-title.mb-3.text-gold #{movie.original_title}
+              if movie.release_date
+                p.card-text.text-light.mb-2
+                  i.bi-calendar-check.me-2
+                  | Release Date: #{movie.release_date}
+              if movie.runtime
+                p.card-text.text-light
+                  i.bi-clock.me-2
+                  | Runtime: #{movie.runtime} min
+        .col-md-8.d-flex.background
+          .movie-details.bg-black.text-light.p-4.rounded.shadow-lg.w-100
+            h1.text-gold #{movie.original_title}
+            if movie.overview
+              p.lead.text-light #{movie.overview}
+            if movie.genres.length
+              h4.text-gold.mt-4 Genres:
+              p.text-light #{movie.genres.map(genre => genre.name).join(', ')}
+            if movie.production_companies.length
+              h4.text-gold.mt-4 Production Companies:
+              p.text-light #{movie.production_companies.map(prod => prod.name).join(', ')}
+            h4.text-gold.mt-4 Movie Stats:
+            if movie.runtime
+              p.text-light
+                i.bi-clock.me-2
+                | Runtime: #{movie.runtime} min
+            if movie.release_date
+              p.text-light
+                i.bi-calendar-check.me-2
+                | Released: #{movie.release_date}
+            if movie.budget
+              p.text-light
+                i.bi-cash-stack.me-2
+                | Budget: #{(Number(movie.budget)) + 1} Million
+            .d-flex.mt-3
+              if movie.imdb_id
+                a.btn.btn-outline-danger.me-3(href=`https://www.imdb.com/title/${movie.imdb_id}`, target="_blank")
+                  i.bi-film.me-2 
+                  span IMDb Page
+              if movie.id
+                a.btn.btn-outline-info(href=`https://www.themoviedb.org/movie/${movie.id}`, target="_blank")
+                  i.bi-camera-reels.me-2  
+                  span View on TMDb
+      else
+        .col-md-4.d-flex.background
+          .card.shadow-lg.border-0.w-100
+            if book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail
+              img.card-img-top.rounded.borders(src=`${book.volumeInfo.imageLinks.thumbnail}`, alt=`This is an image of the book ${book.volumeInfo.title}`)
+            .card-body.text-center.bg-black.text-light
+              h3.card-title.mb-3.text-gold #{book.volumeInfo.title}
+              if book.volumeInfo.publishedDate
+                p.card-text.text-light.mb-2
+                  i.bi-calendar-check.me-2
+                  | Published: #{book.volumeInfo.publishedDate}
+        .col-md-8.d-flex.background
+          .book-details.bg-black.text-light.p-4.rounded.shadow-lg.w-100
+            h1.text-gold #{book.volumeInfo.title}
+            if book.volumeInfo.authors
+              h4.text-gold.mt-4 Authors:
+              p.text-light #{book.volumeInfo.authors.join(', ')}
+            if book.volumeInfo.publisher
+              h4.text-gold.mt-4 Publisher:
+              p.text-light #{book.volumeInfo.publisher}
+            if book.volumeInfo.publishedDate
+              h4.text-gold.mt-4 Published Date:
+              p.text-light #{book.volumeInfo.publishedDate}
+            if book.volumeInfo.description
+              h4.text-gold.mt-4 Overview:
+              p.lead.text-light !{book.volumeInfo.description}
+            .d-flex.mt-3
+              if book.volumeInfo.previewLink
+                a.btn.btn-outline-primary.me-3(href=`${book.volumeInfo.previewLink}`, target="_blank")
+                  i.bi-book.me-2 
+                  span Preview Book
+              if book.volumeInfo.infoLink
+                a.btn.btn-outline-info(href=`${book.volumeInfo.infoLink}`, target="_blank")
+                  i.bi-info-circle.me-2 
+                  span More Info

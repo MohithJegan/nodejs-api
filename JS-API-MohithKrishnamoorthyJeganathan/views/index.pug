@@ -1,0 +1,17 @@
+extends layout
+
+block layout-content
+  .container.d-flex.justify-content-center.align-items-center.min-vh-100.bg-black
+    .selection-box.p-5.rounded.shadow-lg
+      legend.h3.fw-bold.text-gold.text-center Select Your Favorite Genre
+      p.text-light.text-center Choose a genre to get top movie and book recommendations.
+      // Dropdown to get user selected genre
+      form(action="/genre/data" method="POST")
+        .mb-4
+          label.form-label.fw-semibold.text-light(for="selectedGenre") Choose a Genre:
+          select#selectedGenre.form-select.border-gold.shadow-sm(name="selectedGenre" required)
+            option(selected disabled value="select") Select a Genre  
+            each genre in genreList
+              option(value=`${genre.id} ${genre.name}`) #{genre.name}
+        .d-grid
+          button.btn.btn-glow.px-4.py-2(type="submit") Get Recommendations

@@ -1,0 +1,11 @@
+extends layout
+
+block layout-content
+  .container
+    h2.text-center.text-gold.fw-bold.mb-4 List of Genres
+    .row.justify-content-center
+      each genre in genreList
+        .col-md-4.mb-3
+          .card.shadow-lg.border-gold.text-center.p-3.bg-dark.text-light
+            i.bi-film.text-gold.fs-2.mb-2
+            h5.fw-bold #{genre.name}
