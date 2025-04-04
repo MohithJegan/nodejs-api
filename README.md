@@ -63,3 +63,9 @@ Used for high-quality book cover images.
 - `getBookThroughBookId(bookId)` – Fetch a book by its ID
 - `checkOpenLibraryCover(isbn)` – Validate if a high-res Open Library image exists
 - `getBooksWithCoverImage(books)` – Enhance books with best available cover images
+
+## Set Up
+- Run `npm install`
+- Copy and Paste the contents of the .env file.
+- Run `npm run dev`
+- Open the browser and the application will be running in `http://localhost:8080/`
