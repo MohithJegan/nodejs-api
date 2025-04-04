@@ -66,6 +66,6 @@ Used for high-quality book cover images.
 
 ## Set Up
 - Run `npm install`
-- Copy and Paste the contents of the .env file.
+- Copy and Paste the contents of the `.env` file.
 - Run `npm run dev`
 - Open the browser and the application will be running in `http://localhost:8080/`
